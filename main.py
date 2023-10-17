@@ -3,7 +3,6 @@ from tkinter import *
 import csv
 from tkinter import messagebox
 
-
 # Colores
 fondo_entrar = "#FFFFFF"
 fondo_salir = "#FFFFFF"
@@ -58,7 +57,6 @@ class Biblioteca:
         except Exception as e:
             tk.messagebox.showerror("Error", f"No se pudo guardar en el archivo CSV: {e}")
 
-
 def hide_me(event):
     event.widget.pack_forget()
 
@@ -89,7 +87,6 @@ def create_button(parent, text, command, y_position, x_position):
     boton = tk.Button(parent, text=text, command=command, cursor="hand2", relief="flat", bg=fondo_correcto, font=("Comic Sans MS", 12, "bold"), activebackground="red")
     boton.place(x=x_position, y=y_position)
 
-
 def correcta():
     nombre = usuario.get()
     ventana.withdraw()
@@ -108,11 +105,9 @@ def correcta():
     mensaje_bienvenida = tk.Label(window, text=f"Bienvenido, {nombre} Al SAB", font=("Comic Sans MS", 21, "bold"), bg="#DADADA")
     mensaje_bienvenida.place(x=20, y=30)
 
-
     def regreso():
         window.withdraw()
         ventana.deiconify()
-
 
     create_button(window, "Agregar", agregar_libro, y_position=130, x_position=110)
     create_button(window, "Biblioteca", mostrar_libros, y_position=130, x_position=350)
@@ -122,7 +117,6 @@ def correcta():
     create_button(window, "Actualizar", actualizar_libro, y_position=320, x_position=350)
     create_button(window, "Eliminar libro", eliminar_libro, y_position=410, x_position=110)
     create_button(window, "Salir", regreso, y_position=410, x_position=350)
-
 
 def agregar_libro():
     ventana.withdraw()
@@ -365,10 +359,6 @@ def reservar_libros():
                                     cursor="hand2", relief="flat", bg="#33FF33", font=("Comic Sans MS", 14, "bold"), activebackground="green")
         reservar_button.pack(pady=10)
 
-# ... (código posterior) ...
-
-
-
 def cancelar_reserva():
     # Crea una nueva ventana para el menú de opciones
     ventana_cancelar_reserva = tk.Toplevel()
@@ -401,7 +391,6 @@ def cancelar_reserva():
                     # Crea una ventana emergente de confirmación
                     confirmacion = messagebox.askyesno("Confirmar Cancelación",
                                                        f"¿Estás seguro de que deseas cancelar la reserva del libro '{libro.titulo}'?")
-
                     if confirmacion:
                         libro.cancelar_reserva()
                         libro.estado = "Disponible"
@@ -492,7 +481,6 @@ def actualizar_libro():
               relief="flat", bg=fondo_correcto, font=("Comic Sans MS", 14, "bold"), activebackground="red").pack(pady=10)
 
     ventana_actualizar.mainloop()
-
 
 def eliminar_libro():
     # Ocultar la ventana principal
@@ -596,6 +584,5 @@ boton.place(x=51, y=365)
 boton1 = tk.Button(ventana, text="Salir", command=salir, cursor="hand2", bg=fondo_salir, width=11, relief="flat",
                    font=("Comic Sans MS", 17, "bold"))
 boton1.place(x=280, y=365)
-
 
 ventana.mainloop()

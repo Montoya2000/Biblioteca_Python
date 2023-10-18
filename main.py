@@ -157,6 +157,12 @@ def agregar_libro():
         if not titulo:
             tk.messagebox.showerror("Error", "Debe ingresar al menos el título del libro.")
             return
+        
+        #Validar que no se puedan almacenar libros con titulos repetidos en el archivo csv
+        for libro in biblioteca.libros[1:]:
+            if(libro.titulo == titulo):
+                tk.messagebox.showerror("Libro duplicado", "Parece que un libro con ese titulo ya se encuentra registrado.")
+                return
 
         # Crear una instancia de Libro y agregarla a la biblioteca
         nuevo_libro = Libro(titulo, autor, genero, anio_publicacion, "Disponible")

@@ -212,10 +212,17 @@ def mostrar_libros():
     window.title("Lista de Libros")
     window.geometry("600x400+500+50")
     window.resizable(width=False, height=False)
+    
+    #Agregar scrollbar para el cuadro de texto
+    scrollbar = tk.Scrollbar(window)
+    scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
     # Agrega un cuadro de texto para mostrar la información de los libros
     libro_text = tk.Text(window, font=("Comic Sans MS", 12), wrap=tk.WORD)
     libro_text.pack(padx=20, pady=20, fill=tk.BOTH, expand=True)
+    
+    libro_text.config(yscrollcommand=scrollbar.set)
+    scrollbar.config(command=libro_text.yview)
 
     # Llena el cuadro de texto con la información de los libros (omitir la primera fila)
     for libro in biblioteca.libros[1:]:  # Omitir la primera fila (encabezados)
@@ -225,6 +232,8 @@ def mostrar_libros():
         libro_text.insert(tk.END, f"Año de Publicación: {libro.anio_publicacion}\n")
         libro_text.insert(tk.END, f"Estado: {libro.estado}\n")
         libro_text.insert(tk.END, "-"*50 + "\n")  # Separador
+    
+    libro_text.config(state=DISABLED)
 
     def regresar():
         window.destroy()  # Cierra la ventana de lista de libros
